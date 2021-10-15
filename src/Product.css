@@ -1,7 +1,7 @@
 .product{
     display: flex;
     flex-direction: column;
-    background-color: white;
+     background-color: white; 
     z-index: 1;
     align-items: center;
     justify-content: flex-end;
