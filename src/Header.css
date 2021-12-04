@@ -10,7 +10,7 @@
     z-index: 100;
 }
 
-.header__logo{
+.header--logo{
     width: 100px;
     margin: 0 20px;
     margin-top: 18px;
@@ -20,13 +20,13 @@
 
 
 
-.header__search{
+.header--search{
     display: flex;
      flex: 1; 
     align-items: center;
 }
 
-.header__searchInput{
+.header--searchInput{
     padding: 10px;
     height: 14px;
     border: none;
@@ -38,12 +38,12 @@
     height: 22px;
 }
 
-.header__nav{
+.header--nav{
     display: flex;
     justify-content: space-evenly;
 }
 
-.header__option{
+.header--option{
     color: white;
      display: flex;
      flex-direction: column;
@@ -51,11 +51,11 @@
      margin-right: 10px;
 }
 
-.header__optionLineOne{
+.header--optionLineOne{
    font-size: 10px;
 }
 
-.header__optionLineTwo{
+.header--optionLineTwo{
    font-size: 13px;
    font-weight: 700;
    text-align: center;
