@@ -15,9 +15,8 @@ function Product({id, title, price, image}) {
              price:price,
              image:image,
             }
-        }
-        );
-    }
+        });
+}
 
     return (
         <div className="product">
