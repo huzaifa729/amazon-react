@@ -1,6 +1,7 @@
 import React from 'react'
 import './Product.css'
 import { useStateValue } from './StateProvider'
+
 function Product({id, title, price, image}) {
     const [{cart}, dispatch] = useStateValue();
  
