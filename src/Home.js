@@ -28,6 +28,15 @@ function Home() {
                price={122290}
                image="https://m.media-amazon.com/images/I/71vZypjNkPS._AC_UY218_.jpg"
                />
+
+        <Product 
+               id="02"
+               title="Redmi Note 10T 5G (Graphite Black, 4GB"
+               price={1499900}
+               image="https://images-eu.ssl-images-amazon.com/images/I/41JMIe2FHuL._SX300_SY300_QL70_FMwebp_.jpg"
+               />
+
+
           
             </div>
 
