@@ -9,6 +9,7 @@ import {
  
 } from "react-router-dom";
 import Checkout from './Checkout';
+import Login from './Login';
 
 function App() {
   return (
@@ -16,6 +17,10 @@ function App() {
     <div className="App">
       {/* <h1>We are building Amaon Project</h1>  */}
       <Switch>
+        <Route path="/login">
+      
+          <Login/>
+        </Route>
         <Route path="/checkout">
            <Header />
             <Checkout/>
