@@ -24,7 +24,7 @@
     height: fit-content;
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
+    border: 1px solid red;
     border-radius: 5px;
     padding: 20px;
 }
@@ -44,6 +44,7 @@
     margin-bottom: 10px;
     width: 98%;
     background-color: white;
+  
 }
 
 
