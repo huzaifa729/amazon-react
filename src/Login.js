@@ -10,6 +10,18 @@ function Login() {
 
       const signIn = e => {
          e.preventDefault();
+
+         auth
+             .signInWithEmailAndPassword(email,password)
+             .then((auth) => {
+              //successfullu create a new user
+              // console.log(auth);
+              if(auth){
+                history.push('/')
+              }
+
+        })
+             .catch(error => alert(error.message))
       }
 
       const register = e => {
@@ -19,7 +31,10 @@ function Login() {
         .createUserWithEmailAndPassword(email, password)
         .then((auth) => {
               //successfullu create a new user
-              console.log(auth);
+              // console.log(auth);
+              if(auth){
+                history.push('/')
+              }
 
         })
           .catch(error => alert(error.message))
