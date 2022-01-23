@@ -19,6 +19,10 @@
 }
 
 
-.payment--address{
+.payment--address, .payment--items{
+    flex: 0.8;
+}
+
+.payment--title{
     flex: 0.2;
 }
