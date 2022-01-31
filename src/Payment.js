@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
+import axios from 'axios';
 import './Payment.css';
 import { useStateValue } from "./StateProvider";
 import CheckoutProduct from "./CheckoutProduct";
@@ -6,22 +7,46 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import CurrencyFormat from 'react-currency-format';
 import {getCartTotal} from "./reducer"
 
+
+
 function Payment() {
     const [{cart,user}, dispatch] = useStateValue();
-
     const stripe = useStripe();
     const elements = useElements();
-
     const [error, setError] = useState(null);
     const [disabled, setDisabled] = useState(true);
     const [succeeded, setSucceeded] = useState(false)
     const [processing, setProcessing] = useState("")
+    const [clientSecret, setClientSecret] = useState(true);
 
-    const handleSubmit = e => {
+    useEffect(() => {
+          // generate the special stripe secret which allows us to charge a customer
+
+     const  getClientSecret = async  () =>{
+           const response = await axios({
+               method: 'post',
+               //stripe use expect total amount in base currencies like ruppes to paise
+               url: `/payment/create?total=${getCartTotal(cart)* 100}`
+           });
+           setClientSecret(response.data.clientSecret)
+     }
+
+        getClientSecret();
+    },[cart])
+
+    const handleSubmit = async (event) => {
+         event.preventDefault(); 
+         setProcessing(true) 
+
+          const payload = await stripe.confirmCardPayment(clientSecret, {
+              payment_method: {
+                  card: elements.getElement(CardElement)
+              }
+          });
        
-    }
+    };
 
-    const handleChange = event => {
+    const handleChange = (event) => {
        setDisabled(event.empty);
        setError(event.error ? event.error.message : "");
     }
@@ -72,10 +97,10 @@ function Payment() {
                        <CurrencyFormat
                         renderText ={ (value)=>(
                      <>
-                      <p>Subtotal ({cart.length} items):<strong>{value}</strong> </p>
-                      <small className="subtotal--gift">
+                      <p>Subtotal ({cart.length} items):<strong>{value}</strong>{" "} </p>
+                      {/* <small className="subtotal--gift">
                      <input type="checkbox" /> This order contains a gift
-                     </small>
+                     </small> */}
                     </>
              )}
                decimalScale = {2}
@@ -87,7 +112,11 @@ function Payment() {
                     <button disabled = {processing || disabled || succeeded}>
                        <span > {processing ? <p>Processing</p> : "Buy Now"} </span>
                     </button>
-                        </div>
+                    </div>
+
+                           {/* Error */}
+
+                           {error && <div>{error}</div>}
                   </form>
                   </div> 
                 </div>

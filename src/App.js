@@ -21,6 +21,7 @@ const promise = loadStripe('pk_test_51KJFGGSGtv46Bfi1hBljdoSq8Kk1qdWlTh8YkLD4Btr
 function App() {
   const [{}, dispatch] = useStateValue();
   useEffect(() => {
+    // will only runce one when app component is loaded
     auth.onAuthStateChanged(
       authUser => {
         console.log('THE USER IS :', authUser)
