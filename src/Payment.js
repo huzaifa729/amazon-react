@@ -6,11 +6,13 @@ import CheckoutProduct from "./CheckoutProduct";
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import CurrencyFormat from 'react-currency-format';
 import {getCartTotal} from "./reducer"
+import {Link, useHistory } from 'react-router-dom';
 
 
 
 function Payment() {
     const [{cart,user}, dispatch] = useStateValue();
+    const history = useHistory();
     const stripe = useStripe();
     const elements = useElements();
     const [error, setError] = useState(null);
@@ -42,7 +44,17 @@ function Payment() {
               payment_method: {
                   card: elements.getElement(CardElement)
               }
-          });
+          }).then( ({paymentIntent})=>{
+              setSucceeded(true);
+              setError(null);
+              setProcessing(false)
+
+
+           history.replace('/orders')
+
+          }
+
+          )
        
     };
 
