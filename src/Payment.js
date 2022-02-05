@@ -6,7 +6,7 @@ import CheckoutProduct from "./CheckoutProduct";
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import CurrencyFormat from 'react-currency-format';
 import {getCartTotal} from "./reducer"
-import {Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 
 
